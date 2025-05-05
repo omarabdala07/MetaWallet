@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MetaMask - Simulação</title>
+<style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+      background-color: #1c1d1f;
+      color: #ffffff;
+    }
+    .app-container {
+      padding: 12px 16px;
+    }
+    .hidden {
+      display: none;
+    }
+    .account-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .account-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .account-address {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .main-balance {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+    .portfolio-link {
+      font-size: 13px;
+      background-color: #2f3136;
+      padding: 4px 10px;
+      border-radius: 10px;
+      color: #78b7ff;
+      text-decoration: none;
+    }
+    .token-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+    .token {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #2f3136;
+    }
+    .token-name {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .token-sub {
+      font-size: 12px;
+      color: #999;
+    }
+    .token-value {
+      text-align: right;
+    }
+    .token-value .amount {
+      font-size: 14px;
+    }
+    .token-value .usd {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .import-link {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      color: #7da6ff;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background-color: #1c1d1f;
+      border-top: 1px solid #2f3136;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    nav div {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      cursor: pointer;
+    }
+    nav div.active {
+      color: #ffffff;
+    }
+    nav div span {
+      font-size: 20px;
+      display: block;
+    }
+  </style>
+<link href="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" rel="apple-touch-icon"/>
+</head>
+<body>
+<div class="app-container" id="tab-carteira">
+<div class="account-info">
+<div>
+<div class="account-name">Account 1</div>
+<div class="account-address">0xf5a1...938f</div>
+</div>
+<a class="portfolio-link" href="#">Portfólio</a>
+</div>
+<div class="main-balance">US$ 10.248.391,22</div>
+<div class="token-header">
+<span>Tokens</span>
+<span>Ethereum Main Network ▼</span>
+</div>
+<div class="token">
+<div>
+<div class="token-name">Ethereum</div>
+<div class="token-sub">Ganhar</div>
+</div>
+<div class="token-value">
+<div class="amount">0,0034 ETH</div>
+<div class="usd">US$ 10,15</div>
+</div>
+</div>
+<div class="token">
+<div>
+<div class="token-name">Tether USD</div>
+<div class="token-sub">USDT</div>
+</div>
+<div class="token-value">
+<div class="amount">10.248.391,22</div>
+<div class="usd">US$ 10.248.391,22</div>
+</div>
+</div>
+<a class="import-link" href="#">Importar tokens</a>
+</div>
+<div class="app-container hidden" id="tab-atividade">
+<h3>Atividade</h3>
+<p>Sem transações recentes.</p>
+</div>
+<div class="app-container hidden" id="tab-portfolio">
+<h3>Portfólio</h3>
+<p>Exibição do portfólio não disponível na simulação.</p>
+</div>
+<div class="app-container hidden" id="tab-configs">
+<h3>Configurações</h3>
+<p>Aqui você ajustaria preferências de rede, segurança, etc.</p>
+</div>
+<div style="height: 64px;"></div>
+<nav>
+<div class="active" onclick="showTab('carteira', this)">
+<span>🏦</span>
+    Carteira
+  </div>
+<div onclick="showTab('atividade', this)">
+<span>🧾</span>
+    Atividade
+  </div>
+<div onclick="showTab('portfolio', this)">
+<span>📈</span>
+    Portfólio
+  </div>
+<div onclick="showTab('configs', this)">
+<span>⚙️</span>
+    Configs
+  </div>
+</nav>
+<script>
+  function showTab(tab, el) {
+    document.querySelectorAll('.app-container').forEach(e => e.classList.add('hidden'));
+    document.querySelector('#tab-' + tab).classList.remove('hidden');
+    document.querySelectorAll('nav div').forEach(e => e.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+<!-- Modais simulados -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8); color:white; z-index:1000; padding:40px 20px; text-align:center;">
+<div id="modal-content" style="background:#2f3136; border-radius:12px; padding:20px;">
+<div id="modal-text" style="margin-bottom:20px;">...</div>
+<button onclick="closeModal()" style="background:#444; color:white; border:none; padding:10px 16px; border-radius:8px;">Fechar</button>
+</div>
+</div>
+<!-- Ações rápidas -->
+<div style="display:flex; justify-content:space-around; padding:10px 0 10px; border-top:1px solid #2f3136; background:#1c1d1f; position:sticky; top:0; z-index:500;">
+<button onclick="showModal('QR Code da carteira: 0xf5a1...938f')" style="background:#2f3136; color:white; padding:8px 12px; border:none; border-radius:8px;">QR Code</button>
+<button onclick="showModal('Endereço copiado: 0xf5a1975c26ac3aecdc673b84b9907b0f3fdc938f')" style="background:#2f3136; color:white; padding:8px 12px; border:none; border-radius:8px;">Copiar</button>
+<button onclick="showModal('Simulando envio de USDT...')" style="background:#2f3136; color:white; padding:8px 12px; border:none; border-radius:8px;">Enviar</button>
+<button onclick="showModal('Simulando recebimento de USDT...')" style="background:#2f3136; color:white; padding:8px 12px; border:none; border-radius:8px;">Receber</button>
+</div>
+<script>
+  function showModal(text) {
+    document.getElementById('modal-text').innerText = text;
+    document.getElementById('modal').style.display = 'block';
+  }
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+</body>
+</html>
